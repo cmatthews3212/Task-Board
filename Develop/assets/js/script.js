@@ -2,13 +2,19 @@
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
 
-// Todo: create a function to generate a unique task id
-function generateTaskId() {
 
+// Todo: create a function to generate a unique task id
+// Virtual learning assistent helped with this function
+function generateTaskId() {
+    const timestamp = new Date().getTime();
+    const random = Math.floor(Math.random() * 1000);
+    const uniqueId = `${timestamp}${random}`;
+    return uniqueId
 }
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
+    
 
 }
 
