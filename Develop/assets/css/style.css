@@ -31,3 +31,13 @@ input {
   margin-bottom: 10px;
 
 }
+
+#submit {
+  margin-top: 10px;
+  width: 25%;
+  border-radius: 5px;
+}
+
+#submit:hover {
+  background-color: mediumseagreen;
+}

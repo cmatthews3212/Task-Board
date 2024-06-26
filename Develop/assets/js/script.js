@@ -1,7 +1,8 @@
 // Retrieve tasks and nextId from localStorage
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
-
+const project = document.getElementById("project").val();
+console.log(project)
 
 // Todo: create a function to generate a unique task id
 // Virtual learning assistent helped with this function
