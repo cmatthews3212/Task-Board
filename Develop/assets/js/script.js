@@ -1,8 +1,26 @@
 // Retrieve tasks and nextId from localStorage
+
+
+
+// retrieveTaskList()
 let taskList = JSON.parse(localStorage.getItem("tasks"));
 let nextId = JSON.parse(localStorage.getItem("nextId"));
-const project = document.getElementById("project").val();
-console.log(project)
+const projectValue = $("#project");
+const nameValue = $("#name");
+const dateValue = $("#date");
+const submitBtn = $("#submit")
+
+function retrieveTaskList () {
+    if (taskList == null) {
+        taskList = []
+    } else {
+        return taskList
+    }
+}
+
+function pushTaskList () {
+    
+}
 
 // Todo: create a function to generate a unique task id
 // Virtual learning assistent helped with this function
@@ -15,9 +33,42 @@ function generateTaskId() {
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
+    // submitBtn.on("click", function (event) {
+        // let newDiv = $(".card-body").add("div")
+        // // $("#todo-cards").append(newDiv)
+        // newDiv.addClass("card-container")
+        // let h2El = newDiv.add("h2").textContent = projectValue.val()
+        // let h3El = newDiv.add("h3").textContent = nameValue.val()
+        // let h4El = newDiv.add("h4").textContent = dateValue.val()
+     
     
+        tasksObj = {
+            id: generateTaskId(),
+            project: projectValue.val(),
+            name: nameValue.val(),
+            date: dateValue.val(),
+            status: 'to-do',
+        }
 
+        const tasks = retrieveTaskList();
+
+        tasks.push(tasksObj)
+
+        localStorage.setItem("tasks", JSON.stringify(tasks))
+
+      pushTaskList(tasks)
+
+
+
+      
+  
+    
 }
+
+submitBtn.on("click", function (event) {
+    event.preventDefault();
+    createTaskCard();
+});
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {

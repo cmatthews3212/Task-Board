@@ -15,7 +15,7 @@ body {
   cursor: grab;
 }
 
-form {
+/* form {
   display: flex;
   flex-direction: column;
   width: 25%;
@@ -41,3 +41,13 @@ input {
 #submit:hover {
   background-color: mediumseagreen;
 }
+
+.card-container {
+  background-color: #198754;
+  padding: 20px;
+  border-radius: 10px;
+  width: 25%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+} */
