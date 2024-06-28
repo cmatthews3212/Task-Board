@@ -3,6 +3,7 @@
 const projectValue = $("#project");
 const nameValue = $("#name");
 const dateValue = $("#date");
+const submit = $('#submitBtn')
 
 
 
@@ -49,31 +50,58 @@ function saveToStorage (tasks) {
 // Todo: create a function to create a task card
 function createTaskCard(task) {
 
-     
-    
-        tasksObj = {
-            id: generateTaskId(),
-            project: projectValue.val(),
-            name: nameValue.val(),
-            date: dateValue.val(),
-            status: 'to-do',
-        }
+    const taskCard = $('div')
+    taskCard.addClass('card draggable');
+    taskCard.attr('data-task-id', task.id);
+
+    const taskHeader = $('div')
+    taskHeader.addClass('card-header')
+    taskHeader.text("Task")
+
+    const taskList = $('ul')
+    taskList.addClass('list-group list-group-flush')
+
+    const taskLiEl1 = $('li')
+    taskLiEl1.addClass('list-group-item')
+    taskLiEl1.text(task.project)
+
+    const taskLiEl2 = $('li')
+    taskLiEl2.addClass('list-group-item')
+    taskLiEl2.text(task.name)
+
+    const taskLiEl3 = $('li')
+    taskLiEl3.addClass('list-group-item')
+    taskLiEl3.text(task.date)
+
+    const deleteBtn = $('<button>');
+    deleteBtn.addClass('btn btn-danger delete')
+    deleteBtn.text('Delete')
+    deleteBtn.attr('data-task-id', task.id)
+
+    taskList.append(taskLiEl1)
+    taskList.append(taskLiEl2)
+    taskList.append(taskLiEl3)
 
 
-        const tasks = readStorage();
-        tasks.push(tasksObj);
-        saveToStorage(tasks)
+    taskCard.append(taskHeader)
+    taskCard.append(taskList)
+    taskCard.append(deleteBtn)
 
- 
+    return taskCard;
+
+
+}
+
+function printTaskData () {
+    const tasks = readStorage();
+
+    const todoList = $('#todo-cards')
+    todoList.empty();
+
     
 }
 
-const submit = $('#submitBtn')
 
-submit.on("click", function (event) {
-    event.preventDefault();
-createTaskCard()
-});
 
 // Todo: create a function to render the task list and make cards draggable
 function renderTaskList() {
@@ -82,8 +110,28 @@ function renderTaskList() {
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
-
+    
+    
+    tasksObj = {
+        id: generateTaskId(),
+        project: projectValue.val(),
+        name: nameValue.val(),
+        date: dateValue.val(),
+        status: 'to-do',
+    }
+    
+    
+    const tasks = readStorage();
+    tasks.push(tasksObj);
+    saveToStorage(tasks)
+    
 }
+
+
+submit.on("click", function (event) {
+    event.preventDefault();
+    handleAddTask()
+});
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
