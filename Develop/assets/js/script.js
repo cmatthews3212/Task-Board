@@ -1,32 +1,24 @@
 // Retrieve tasks and nextId from localStorage
+
+const projectValue = $("#project");
+const nameValue = $("#name");
+const dateValue = $("#date");
+
+
+
+
 // https://getbootstrap.com/docs/4.0/components/modal/#via-javascript 
 $('#modal').on('shown.bs.modal', function () {
     $('#modal').modal('show')
+
 })
 
 
 
 
 
-// retrieveTaskList()
-let taskList = JSON.parse(localStorage.getItem("tasks"));
-let nextId = JSON.parse(localStorage.getItem("nextId"));
-const projectValue = $("#project");
-const nameValue = $("#name");
-const dateValue = $("#date");
-const submitBtn = $("#submit")
-
 function retrieveTaskList () {
-    if (taskList == null) {
-        taskList = []
-    } else {
-        return taskList
-    }
-}
-
-function pushTaskList () {
-    
-}
+ }
 
 // Todo: create a function to generate a unique task id
 // Virtual learning assistent helped with this function
@@ -37,15 +29,26 @@ function generateTaskId() {
     return uniqueId
 }
 
+function readStorage () {
+    const tasksStored = localStorage.getItem('tasks');
+    console.log(tasksStored); 
+    if (tasksStored){
+            const tasksParsed = JSON.parse(tasksStored);
+            return tasksParsed
+        } else {
+            const tasksStored = [];
+            return tasksStored;
+        }
+}
+
+function saveToStorage (tasks) {
+    let tasksString = JSON.stringify(tasks);
+    localStorage.setItem("tasks", tasksString);
+}
+
 // Todo: create a function to create a task card
 function createTaskCard(task) {
-    // submitBtn.on("click", function (event) {
-        // let newDiv = $(".card-body").add("div")
-        // // $("#todo-cards").append(newDiv)
-        // newDiv.addClass("card-container")
-        // let h2El = newDiv.add("h2").textContent = projectValue.val()
-        // let h3El = newDiv.add("h3").textContent = nameValue.val()
-        // let h4El = newDiv.add("h4").textContent = dateValue.val()
+
      
     
         tasksObj = {
@@ -56,24 +59,20 @@ function createTaskCard(task) {
             status: 'to-do',
         }
 
-        const tasks = retrieveTaskList();
 
-        tasks.push(tasksObj)
+        const tasks = readStorage();
+        tasks.push(tasksObj);
+        saveToStorage(tasks)
 
-        localStorage.setItem("tasks", JSON.stringify(tasks))
-
-      pushTaskList(tasks)
-
-
-
-      
-  
+ 
     
 }
 
-submitBtn.on("click", function (event) {
+const submit = $('#submitBtn')
+
+submit.on("click", function (event) {
     event.preventDefault();
-    createTaskCard();
+createTaskCard()
 });
 
 // Todo: create a function to render the task list and make cards draggable
