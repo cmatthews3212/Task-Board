@@ -23,11 +23,11 @@
   </header>
   <div class="container">
     <div class="text-center mb-5">
-      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#formModal">Add Task</button>
+      <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#modal">Add Task</button>
     </div>
     <!-- Todo: Create a modal with a form to add tasks -->
-     <button id="open">Create Project</button>
-    <div class="modal fade" id="Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+     <!-- https://getbootstrap.com/docs/4.0/components/modal/#via-javascript -->
+    <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
@@ -36,26 +36,26 @@
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-            <div class="modal-body">
-              <form>
-                <div class="form-group">
-                  <label for="project">Project:</label>
-                  <input type="text" class="form-control" id="project" placeholder="Enter your project title">
-                </div>
-                <div class="form-group">
-                  <label for="name">Name:</label>
-                  <input type="text" class="form-control" id="name" placeholder="Enter your name">
-                </div>
-                <div class="form-group">
-                  <label for="date">Due Date:</label>
-                  <input type="date" class="form-control" id="date">
-              </form>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">Submit</button>
-            </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="project">Project:</label>
+                <input type="text" class="form-control" id="project" placeholder="Enter your project title">
+              </div>
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name">
+              </div>
+              <div class="form-group">
+                <label for="date">Due Date:</label>
+                <input type="date" class="form-control" id="date">
+              </div>
+              <button type="submit" class="btn btn-primary mt-3">Submit</button>
+            </form>
           </div>
+            <!-- <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div> -->
         </div>
       </div>
     </div>

@@ -1,4 +1,10 @@
 // Retrieve tasks and nextId from localStorage
+// https://getbootstrap.com/docs/4.0/components/modal/#via-javascript 
+$('#modal').on('shown.bs.modal', function () {
+    $('#modal').modal('show')
+})
+
+
 
 
 
