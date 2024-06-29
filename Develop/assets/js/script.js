@@ -90,6 +90,8 @@ function saveToStorage (tasks) {
 
 // Todo: create a function to create a task card
 function createTaskCard(task) {
+
+
     
 const cardDiv = $('<div>');
 cardDiv.addClass('card m-4')
@@ -102,10 +104,13 @@ cardHeader.text('Task');
 const cardList = $('<ul>')
 cardList.addClass('list-group list-group-flush')
 const listEl1 = $('<li>')
+listEl1.text(task.project)
 listEl1.addClass('list-group-item')
 const listEl2 = $('<li>')
+listEl2.text(task.name)
 listEl2.addClass('list-group-item')
 const listEl3 = $('<li>')
+listEl3.text(task.date)
 listEl3.addClass('list-group-item')
 
 const deleteBtn = $('<button>');
@@ -136,9 +141,6 @@ function renderTaskList() {
 
     const tasks = readStorage();
 
-    // for (const task of tasks) {
-    //     console.log(task)
-    // }
 
     const todoList = $('#todo-cards')
     todoList.empty();
@@ -150,6 +152,7 @@ function renderTaskList() {
     doneList.empty();
 
 
+
     for (const task of tasks) {
         const projectCard = createTaskCard(task);
         if (task.status === 'to-do') {
@@ -159,7 +162,10 @@ function renderTaskList() {
         } else {
             doneList.append(projectCard)
         }
+
     }
+
+
 
     // $('.draggable').draggable({
     //     opacity: 0.7,
@@ -200,10 +206,10 @@ function handleAddTask(event){
 
     
     
+    renderTaskList();
     
 }
 
-renderTaskList();
 submit.on("click", function (event) {
     event.preventDefault();
     handleAddTask()
