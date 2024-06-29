@@ -94,7 +94,8 @@ function createTaskCard(task) {
 
     
 const cardDiv = $('<div>');
-cardDiv.addClass('card m-4')
+cardDiv.addClass('card m-4 draggable')
+cardDiv.attr('role', 'button')
 
 
 const cardHeader = $('<div>');
@@ -167,19 +168,19 @@ function renderTaskList() {
 
 
 
-    // $('.draggable').draggable({
-    //     opacity: 0.7,
-    //     zIndex: 100,
+    $('.draggable').draggable({
+        opacity: 0.7,
+        zIndex: 100,
 
-    //     helper: function (e) {
-    //         const original = $(e.target).hasClass('ui-draggable')
-    //         ?$(e.target)
-    //         : $(e.target).closest('.ui-draggable');
-    //         return original.clone().css({
-    //             width: original.outerWidth(),
-    //         })
-    //     }
-    // })
+        helper: function (e) {
+            const original = $(e.target).hasClass('ui-draggable')
+            ?$(e.target)
+            : $(e.target).closest('.ui-draggable');
+            return original.clone().css({
+                width: original.outerWidth(),
+            })
+        }
+    })
 
 
 
@@ -206,10 +207,10 @@ function handleAddTask(event){
 
     
     
-    renderTaskList();
     
 }
 
+renderTaskList();
 submit.on("click", function (event) {
     event.preventDefault();
     handleAddTask()
@@ -224,41 +225,41 @@ function handleDeleteTask(event){
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
 
-//     const tasks = readStorage()
+    const tasks = readStorage()
     
-//     const taskId = ui.draggable[0].dataset.taskId
-//     const newStatus = event.target.id;
+    const taskId = ui.draggable[0].dataset.taskId
+    const newStatus = event.target.id;
  
-//     for (let task of tasks) {
-//         if (task.id === taskId) {
-//             task.status = newStatus
-//         }
-//     }
+    for (let task of tasks) {
+        if (task.id === taskId) {
+            task.status = newStatus
+        }
+    }
 
-//     localStorage.setItem('tasks', JSON.stringify(tasks))
-//     renderTaskList()
+    localStorage.setItem('tasks', JSON.stringify(tasks))
+    renderTaskList()
 
-//     submit.on('click', handleAddTask)
+    submit.on('click', handleAddTask)
 
-//     deleteBtn.on('click', '.delete', handleDeleteTask);
+    deleteBtn.on('click', '.delete', handleDeleteTask);
 
-//     function handleDeleteTask(event) {
+    function handleDeleteTask(event) {
 
-//     }
+    }
 
-//     $(document).ready(function () {
-//         renderTaskList(); 
+    $(document).ready(function () {
+        renderTaskList(); 
 
-//         $('#date').datepicker({
-//             changeMonth: true,
-//             changeYear: true,
-//         });
+        $('#date').datepicker({
+            changeMonth: true,
+            changeYear: true,
+        });
 
-//         $('.lane').droppable({
-//             accept: '.draggable', 
-//             drop: handleDrop,
-//         });
-//     });
+        $('.lane').droppable({
+            accept: '.draggable', 
+            drop: handleDrop,
+        });
+    });
 
 
 
