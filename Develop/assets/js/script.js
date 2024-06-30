@@ -99,14 +99,25 @@ deleteBtn.text('Delete')
 deleteBtn.attr('id', task.id)
 
 
-const today = dayjs()
-// console.log(today.format('MMM D, YYYY'))
-
-// console.log(listEl3[0].innerText)
-
-
+let today = dayjs()
+// console.log(today)
+let today2 = new Date()
+let threeDaysAgo = new Date(today2)
+let twoDaysAgo = new Date(today2)
+let oneDayAgo = new Date(today2)
+threeDaysAgo.setDate(today2.getDate()- 3);
+twoDaysAgo.setDate(today2.getDate()- 2);
+oneDayAgo.setDate(today2.getDate()- 1);
 
 listEl3Date = dayjs(listEl3[0].innerText)
+// console.log(listEl3Date)
+
+// if (listEl3Date.isSame(threeDaysAgo, 'day')) {
+//     console.log('its the same')
+// }
+//  else {
+//     console.log('its not the same')
+// }
 
 // console.log(listEl3Date)
 
@@ -116,6 +127,15 @@ if (listEl3Date.isAfter(today)) {
 } else if (listEl3Date.isSame(today.format('MMM D, YYYY'))) {
     cardHeader.addClass('bg-warning')
     listEl4.text('Due Today!')
+} else if (listEl3Date.isSame(threeDaysAgo, 'day')) {
+    cardHeader.addClass('bg-warning')
+    listEl4.text('Due in Three Days!')
+} else if (listEl3Date.isSame(twoDaysAgo, 'day')) {
+    cardHeader.addClass('bg-warning')
+    listEl4.text('Due in Two Days!')
+} else if (listEl3Date.isSame(oneDayAgo, 'day')) {
+    cardHeader.addClass('bg-warning')
+    listEl4.text('Due in One Day!')
 } else if (listEl3Date.isBefore(today)) {
     cardHeader.addClass('bg-success text-light')
     listEl4.text('Due on:')
@@ -340,11 +360,7 @@ function handleDrop(event, ui) {
 
     submit.on('click', handleAddTask)
 
-    deleteBtn.on('click', '.delete', handleDeleteTask);
 
-    function handleDeleteTask(event) {
-
-    }
 
     // $(document).ready(function () {
     //     renderTaskList(); 
