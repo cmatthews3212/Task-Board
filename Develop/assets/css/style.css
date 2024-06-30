@@ -14,3 +14,40 @@ body {
 .task-card:hover {
   cursor: grab;
 }
+
+/* form {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  background-color: #198754;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 0 auto;
+  margin-bottom: 75px;
+}
+
+input {
+  margin-bottom: 10px;
+
+}
+
+#submit {
+  margin-top: 10px;
+  width: 25%;
+  border-radius: 5px;
+}
+
+#submit:hover {
+  background-color: mediumseagreen;
+}
+
+.card-container {
+  background-color: #198754;
+  padding: 20px;
+  border-radius: 10px;
+  width: 25%;
+  height: 300px;
+  display: flex;
+  flex-direction: column;
+} */
