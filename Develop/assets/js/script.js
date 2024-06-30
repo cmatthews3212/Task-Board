@@ -1,4 +1,3 @@
-
 const projectValue = $("#project");
 const nameValue = $("#name");
 const dateValue = $("#date");
@@ -96,6 +95,7 @@ function createTaskCard(task) {
 const cardDiv = $('<div>');
 cardDiv.addClass('card m-4 draggable')
 cardDiv.attr('role', 'button')
+cardDiv.attr('data-task-id', task.id)
 
 
 const cardHeader = $('<div>');
@@ -117,6 +117,7 @@ listEl3.addClass('list-group-item')
 const deleteBtn = $('<button>');
 deleteBtn.addClass('btn btn-success delete w-50 m-auto')
 deleteBtn.text('Delete')
+deleteBtn.attr('data-task-id', task.id)
 
 
 
@@ -166,7 +167,7 @@ function renderTaskList() {
 
     }
 
-
+// class mini project
 
     $('.draggable').draggable({
         opacity: 0.7,
@@ -191,8 +192,11 @@ function renderTaskList() {
 
 // Todo: create a function to handle adding a new task
 function handleAddTask(event){
+    // event.preventDefault();
+
     tasksObj = {
         id: generateTaskId(),
+        // id: crypto.randomUUID(),
         project: projectValue.val(),
         name: nameValue.val(),
         date: dateValue.val(),
@@ -250,6 +254,7 @@ function handleDrop(event, ui) {
     for (let task of tasks) {
         if (task.id === taskId) {
             task.status = newStatus
+            // console.log(task.id)
         }
     }
 
@@ -264,26 +269,33 @@ function handleDrop(event, ui) {
 
     }
 
-    $(document).ready(function () {
-        renderTaskList(); 
+    // $(document).ready(function () {
+    //     renderTaskList(); 
 
-        $('#date').datepicker({
-            changeMonth: true,
-            changeYear: true,
-        });
+    //     $('#date').datepicker({
+    //         changeMonth: true,
+    //         changeYear: true,
+    //     });
 
-        $('.lane').droppable({
-            accept: '.draggable', 
-            drop: handleDrop,
-        });
-    });
+    //     $('.lane').droppable({
+    //         accept: '.draggable', 
+    //         drop: handleDrop,
+    //     });
+    // });
 
 
 
 
 }
-
+// handleDrop();
 // Todo: when the page loads, render the task list, add event listeners, make lanes droppable, and make the due date field a date picker
 $(document).ready(function () {
+
+    renderTaskList()
+
+    $('.lane').droppable({
+        accept: '.draggable',
+        drop: handleDrop,
+    })
 
 });
