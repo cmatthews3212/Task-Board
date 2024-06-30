@@ -117,7 +117,9 @@ listEl3.addClass('list-group-item')
 const deleteBtn = $('<button>');
 deleteBtn.addClass('btn btn-success delete w-50 m-auto')
 deleteBtn.text('Delete')
-deleteBtn.attr('data-task-id', task.id)
+// deleteBtn.attr('data-task-id', task.id)
+deleteBtn.attr('id', task.id)
+
 
 
 
@@ -129,7 +131,28 @@ cardDiv.append(cardList)
 cardDiv.append(deleteBtn)
 $('#todo-cards').append(cardDiv)
 
-return cardDiv;
+// console.log(deleteBtn)
+
+deleteBtn.on('click', function () {
+const tasks = readStorage()
+
+// console.log(task.id)
+for (const btn of deleteBtn) {
+    // virtual assistant
+        const removeTask = tasks.findIndex(task => task.id === btn.id)
+        
+        if (removeTask !== -1) {
+       tasks.splice(removeTask, 1)
+       let tasksString = JSON.stringify(tasks);
+       localStorage.setItem("tasks", tasksString);
+        }
+        
+    }
+
+    window.location.reload()
+})
+
+// return cardDiv;
   
 }
 
@@ -225,19 +248,31 @@ submit.on("click", function (event) {
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
 
-    const taskId = $(this).attr('data-task-id')
-    const tasks = readStorage()
+    // const deleteBtn = $('.delete')
+    // const tasks = readStorage()
+    // const taskId = $(this).attr('data-task-id')
+    // const tasks = readStorage()
 
-    for (let i = 0; i < tasks.length; i++) {
-        if (deleteBtn == "clicked") {
-            // tasks.splice(tasks[i])
-            console.log("Delete clicked")
-        }
-    }
+    // for (const task of tasks) {
+    //     // console.log(task.id)
+    //     for (const btn of deleteBtn) {
+    //         // console.log(btn.id)
+    //         if (btn.id === task.id) {
+    //             console.log("it matches")
+    //         }
+    //     }
+    // }
 
-    saveToStorage(tasks)
+    // for (let i = 0; i < tasks.length; i++) {
+    //     if (deleteBtn == "clicked") {
+    //         // tasks.splice(tasks[i])
+    //         console.log("Delete clicked")
+    //     }
+    // }
 
-    renderTaskList()
+    // saveToStorage(tasks)
+
+    // renderTaskList()
 
 }
 
