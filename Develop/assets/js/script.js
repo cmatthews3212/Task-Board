@@ -102,12 +102,12 @@ deleteBtn.attr('id', task.id)
 let today = dayjs()
 // console.log(today)
 let today2 = new Date()
-let threeDaysAgo = new Date(today2)
-let twoDaysAgo = new Date(today2)
-let oneDayAgo = new Date(today2)
-threeDaysAgo.setDate(today2.getDate()- 3);
-twoDaysAgo.setDate(today2.getDate()- 2);
-oneDayAgo.setDate(today2.getDate()- 1);
+let threeDays = new Date(today2)
+let twoDays = new Date(today2)
+let oneDay = new Date(today2)
+threeDays.setDate(today2.getDate() + 3);
+twoDays.setDate(today2.getDate() + 2);
+oneDay.setDate(today2.getDate() + 1);
 
 listEl3Date = dayjs(listEl3[0].innerText)
 // console.log(listEl3Date)
@@ -121,22 +121,22 @@ listEl3Date = dayjs(listEl3[0].innerText)
 
 // console.log(listEl3Date)
 
-if (listEl3Date.isAfter(today)) {
-    cardHeader.addClass('bg-danger text-light')
-    listEl4.text('Past Due!')
-} else if (listEl3Date.isSame(today.format('MMM D, YYYY'))) {
-    cardHeader.addClass('bg-warning')
-    listEl4.text('Due Today!')
-} else if (listEl3Date.isSame(threeDaysAgo, 'day')) {
+ if (listEl3Date.isSame(today.format('MMM D, YYYY'))) {
+     cardHeader.addClass('bg-warning')
+     listEl4.text('Due Today!')
+  } else if (today.isAfter(listEl3Date)) {
+        cardHeader.addClass('bg-danger text-light')
+        listEl4.text('Past Due!')
+} else if (listEl3Date.isSame(threeDays, 'day')) {
     cardHeader.addClass('bg-warning')
     listEl4.text('Due in Three Days!')
-} else if (listEl3Date.isSame(twoDaysAgo, 'day')) {
+} else if (listEl3Date.isSame(twoDays, 'day')) {
     cardHeader.addClass('bg-warning')
     listEl4.text('Due in Two Days!')
-} else if (listEl3Date.isSame(oneDayAgo, 'day')) {
+} else if (listEl3Date.isSame(oneDay, 'day')) {
     cardHeader.addClass('bg-warning')
     listEl4.text('Due in One Day!')
-} else if (listEl3Date.isBefore(today)) {
+} else if (today.isBefore(listEl3Date)) {
     cardHeader.addClass('bg-success text-light')
     listEl4.text('Due on:')
 }
