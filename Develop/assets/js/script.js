@@ -59,31 +59,6 @@ function saveToStorage (tasks) {
 
 
 
-// const cardDiv = $('<div>');
-// cardDiv.addClass('card')
-// const cardHeader = $('<div>');
-// cardHeader.addClass('card-header')
-// cardHeader.text('Header');
-
-// const cardList = $('<ul>')
-// cardList.addClass('list-group list-group-flush')
-// const listEl1 = $('<li>')
-// listEl1.addClass('list-group-item')
-// listEl1.text('List Element 1')
-// const listEl2 = $('<li>')
-// listEl2.addClass('list-group-item')
-// listEl2.text('List Element 1')
-// const listEl3 = $('<li>')
-// listEl3.addClass('list-group-item')
-// listEl3.text('List Element 1')
-
-
-
-// cardList.append(listEl1, listEl2, listEl3)
-
-// cardDiv.append(cardHeader);
-// cardDiv.append(cardList)
-// $('#todo-cards').append(cardDiv)
  
 
 
@@ -134,25 +109,24 @@ $('#todo-cards').append(cardDiv)
 // console.log(deleteBtn)
 
 deleteBtn.on('click', function () {
-const tasks = readStorage()
-
-// console.log(task.id)
-for (const btn of deleteBtn) {
-    // virtual assistant
-        const removeTask = tasks.findIndex(task => task.id === btn.id)
-        
-        if (removeTask !== -1) {
-       tasks.splice(removeTask, 1)
-       let tasksString = JSON.stringify(tasks);
-       localStorage.setItem("tasks", tasksString);
+    const tasks = readStorage();
+    for (const btn of deleteBtn) {
+        // virtual assistant
+            const removeTask = tasks.findIndex(task => task.id === btn.id)
+            
+            if (removeTask !== -1) {
+           tasks.splice(removeTask, 1)
+           let tasksString = JSON.stringify(tasks);
+           localStorage.setItem("tasks", tasksString);
+            }
+            
         }
-        
-    }
-
-    window.location.reload()
+    
+        window.location.reload()
 })
 
-// return cardDiv;
+
+return cardDiv;
   
 }
 
@@ -229,7 +203,12 @@ function handleAddTask(event){
     
     
     const tasks = readStorage();
+
+    if (tasksObj.project !== '' && tasksObj.name !== '' && tasksObj.date !== '') {
     tasks.push(tasksObj);
+    } else {
+        alert('Please enter a task')
+    }
     saveToStorage(tasks);
 
     
@@ -247,6 +226,26 @@ submit.on("click", function (event) {
 
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
+
+    // const tasks = readStorage()
+    // const deleteBtn = $('.delete')
+    // console.log(deleteBtn)
+
+// console.log(task.id)
+// for (const btn of deleteBtn) {
+//     // virtual assistant
+//         const removeTask = tasks.findIndex(task => task.id === btn.id)
+        
+//         if (removeTask !== -1) {
+//        tasks.splice(removeTask, 1)
+//        let tasksString = JSON.stringify(tasks);
+//        localStorage.setItem("tasks", tasksString);
+//         }
+        
+//     }
+
+//     window.location.reload()
+
 
     // const deleteBtn = $('.delete')
     // const tasks = readStorage()
