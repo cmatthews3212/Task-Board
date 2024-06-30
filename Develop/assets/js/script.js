@@ -142,19 +142,14 @@ listEl3Date = dayjs(listEl3[0].innerText)
 }
 
 
-// else if (listEl3[0].innerText === today.format('MMM D, YYYY')) {
-//     cardHeader.addClass('bg-warning')
-//     console.log('it matches')
-// }
+if (task.status === 'done') {
+    cardHeader.addClass('bg-light text-dark')
+    listEl4.text('Done!')
+    listEl3.addClass('text-decoration-line-through')
+}
 
-// {
-//     cardHeader.addClass('bg-warning')
-// } else if (listEl3[0].innerText < today.format('MMM D, YYYY')) {
-//     cardHeader.addClass('bg-success text-light')
 
-// } else if (listEl3.isAfter(today)){
-//     cardHeader.addClass('bg-danger text-light')
-// }
+
 
 
 
@@ -187,7 +182,6 @@ deleteBtn.on('click', function () {
 return cardDiv;
   
 }
-
 
 
 
