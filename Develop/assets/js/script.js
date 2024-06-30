@@ -85,8 +85,11 @@ listEl1.addClass('list-group-item')
 const listEl2 = $('<li>')
 listEl2.text(task.name)
 listEl2.addClass('list-group-item')
+const listEl4 = $('<li>')
+listEl4.addClass('list-group-item')
 const listEl3 = $('<li>')
-listEl3.text(task.date)
+const dateFormatter = dayjs(task.date).format('MMM D, YYYY')
+listEl3.text(dateFormatter)
 listEl3.addClass('list-group-item')
 
 const deleteBtn = $('<button>');
@@ -96,17 +99,52 @@ deleteBtn.text('Delete')
 deleteBtn.attr('id', task.id)
 
 
+const today = dayjs()
+// console.log(today.format('MMM D, YYYY'))
+
+// console.log(listEl3[0].innerText)
 
 
 
-cardList.append(listEl1, listEl2, listEl3)
+listEl3Date = dayjs(listEl3[0].innerText)
+
+// console.log(listEl3Date)
+
+if (listEl3Date.isAfter(today)) {
+    cardHeader.addClass('bg-danger text-light')
+    listEl4.text('Past Due!')
+} else if (listEl3Date.isSame(today.format('MMM D, YYYY'))) {
+    cardHeader.addClass('bg-warning')
+    listEl4.text('Due Today!')
+} else if (listEl3Date.isBefore(today)) {
+    cardHeader.addClass('bg-success text-light')
+    listEl4.text('Due on:')
+}
+
+
+// else if (listEl3[0].innerText === today.format('MMM D, YYYY')) {
+//     cardHeader.addClass('bg-warning')
+//     console.log('it matches')
+// }
+
+// {
+//     cardHeader.addClass('bg-warning')
+// } else if (listEl3[0].innerText < today.format('MMM D, YYYY')) {
+//     cardHeader.addClass('bg-success text-light')
+
+// } else if (listEl3.isAfter(today)){
+//     cardHeader.addClass('bg-danger text-light')
+// }
+
+
+
+cardList.append(listEl1, listEl2, listEl4, listEl3)
 
 cardDiv.append(cardHeader);
 cardDiv.append(cardList)
 cardDiv.append(deleteBtn)
 $('#todo-cards').append(cardDiv)
 
-// console.log(deleteBtn)
 
 deleteBtn.on('click', function () {
     const tasks = readStorage();
@@ -129,6 +167,9 @@ deleteBtn.on('click', function () {
 return cardDiv;
   
 }
+
+
+
 
 
 
@@ -214,6 +255,8 @@ function handleAddTask(event){
     
     
     renderTaskList();
+
+  
     
 }
 
