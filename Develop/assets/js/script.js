@@ -116,7 +116,6 @@ listEl3.addClass('list-group-item')
 
 const deleteBtn = $('<button>');
 deleteBtn.addClass('btn btn-success delete w-50 m-auto')
-// deleteBtn.attr('id', 'delete-button')
 deleteBtn.text('Delete')
 
 
@@ -129,40 +128,8 @@ cardDiv.append(cardList)
 cardDiv.append(deleteBtn)
 $('#todo-cards').append(cardDiv)
 
-// console.log(deleteBtn)
-
-// deleteBtn.on('click', function () {
-//     const tasks = readStorage();
-
-//     for (const task of tasks) {
-//         for (let i = 0; i < deleteBtn.length; i++) {
-//         if (task.id === deleteBtn[i].dataset.taskId) {
-//             // console.log(deleteBtn[i].dataset.taskId, "matches", task.id)
-//            console.log(task)
-            
-//         }
-//     }
-//     }
-    
-// })
-
-
-
-// for (let i = 0; i < deleteBtn.length; i++) {
-//     const tasks = readStorage()
-// // deleteBtn.on('click', handleDeleteTask)
-//     if (deleteBtn[i].dataset.taskId === task.id) {
-//     // console.log(deleteBtn[i].dataset.taskId)
-//     // console.log(task.id)
-//     deleteBtn.on('click', function () {
-//         console.log(task)
-//     })
-// } else {
-//     console.log('it doesnt match')
-// }
-// }
-
 return cardDiv;
+  
 }
 
 
@@ -244,69 +211,13 @@ function handleAddTask(event){
     
 }
 
+renderTaskList();
 submit.on("click", function (event) {
-    event.preventDefault();
+    // event.preventDefault();
     handleAddTask()
 })
 
-// renderTaskList()
 
-// deleteBtn.on('click', function () {
-//     console.log('clicked')
-// })
-// console.log(deleteBtn)
-// console.log(deleteBtn[0].dataset.taskId)
-// let deleteArray = []
-// deleteArray.push(deleteBtn)
-// console.log(deleteBtn)
-
-// const tasks = readStorage();
-
-// for (const task of tasks) {
-//     // console.log('btn id:', btn.dataset.taskId)
-//     for (let i = 0; i < deleteBtn.length; i++) { 
-
-//         deleteBtn.on('click', function () {
-//             console.log('clicked')
-//         })
-    
-//         // if (task.id === deleteBtn[i].dataset.taskId) {
-//         // console.log('It matches')
-//         // deleteBtn[i].click(function () {
-//         //     console.log('clicked')
-//         // })
-        
-//     }
-// }
-
-
-// for (const task of tasks ) {
-//     // console.log('task id:', task.id)
-// }
-
-
-
-
-// for (const btn of deleteArray) {
-//     console.log(btn)
-// }
-
-
-
-// const taskarray = readStorage()
-
-
-
-// for (const task of taskarray) {
-
-    
-// }
-
-
-// console.log($('#to-do'))
-
-// const deleteButtons = $('.delete')
-// console.log(deleteButtons)
 // Todo: create a function to handle deleting a task
 function handleDeleteTask(event){
 
@@ -330,7 +241,7 @@ function handleDeleteTask(event){
 
 // Todo: create a function to handle dropping a task into a new status lane
 function handleDrop(event, ui) {
-    
+
     const tasks = readStorage()
     
     const taskId = ui.draggable[0].dataset.taskId
@@ -345,7 +256,13 @@ function handleDrop(event, ui) {
     localStorage.setItem('tasks', JSON.stringify(tasks))
     renderTaskList()
 
-    
+    submit.on('click', handleAddTask)
+
+    deleteBtn.on('click', '.delete', handleDeleteTask);
+
+    function handleDeleteTask(event) {
+
+    }
 
     $(document).ready(function () {
         renderTaskList(); 
