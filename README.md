@@ -33,6 +33,9 @@ If you click on the delete button on any task, that task will be removed from th
 - Virtual assistant helped me create the find index function for the delete button on line 161. This was added in commit "Make delete buttons work"
 - The functions starting on lines 217, 239, 331, and 372 were all helped by the end of the week's mini project. These were added on commits "make pointer cursor on tasks," "make tasks draggable and droppable," and "create task cards."
 
+## Bugs
+Please note, there is currently a bug, where randomly there will be a form submission that may add multiples of the same task. You can delete each individual task if this happens. 
+
 ## License
 Please refer to the LICENSE in the repo.
 
