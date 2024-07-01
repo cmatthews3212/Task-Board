@@ -6,7 +6,7 @@ const submit = $('#submitBtn')
 
 
 
-// https://getbootstrap.com/docs/4.0/components/modal/#via-javascript 
+ 
 $('#modal').on('shown.bs.modal', function () {
     $('#modal').modal('show')
     
@@ -23,7 +23,6 @@ function retrieveTaskList () {
  }
 
 // Todo: create a function to generate a unique task id
-// Virtual learning assistent helped with this function
 function generateTaskId() {
     const timestamp = new Date().getTime();
     const random = Math.floor(Math.random() * 1000);
@@ -42,12 +41,7 @@ function readStorage () {
             return tasksStored;
         }
 }
-// tasks = readStorage()
-// for (const task of tasks) {
-//         if (task.status === 'to-do') {
-//             console.log(task)
-//         }
-// }
+
 
 function saveToStorage (tasks) {
     let tasksString = JSON.stringify(tasks);
@@ -164,7 +158,6 @@ $('#todo-cards').append(cardDiv)
 deleteBtn.on('click', function () {
     const tasks = readStorage();
     for (const btn of deleteBtn) {
-        // virtual assistant
             const removeTask = tasks.findIndex(task => task.id === btn.id)
             
             if (removeTask !== -1) {
@@ -219,7 +212,7 @@ function renderTaskList() {
 
     }
 
-// class mini project
+
 
     $('.draggable').draggable({
         opacity: 0.7,
